@@ -1,7 +1,7 @@
 import { UserInterface } from '../../user/interfaces/user.interface';
 
 export interface WalletInterface {
-  id: number;
+  id?: number;
   name: string;
-  user: UserInterface;
+  user?: UserInterface;
 }

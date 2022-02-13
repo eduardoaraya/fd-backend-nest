@@ -5,14 +5,15 @@ import {
   OneToOne,
   JoinColumn,
 } from 'typeorm';
+import { AbstractEntity } from '../../core/models/abstract.entity';
 import { User } from '../../user/models/user.entity';
 import { Wallet } from '../../wallet/models/wallet.entity';
 import { ReleaseInterface } from '../interfaces/release.interface';
-import { ReleaseCategory } from './releaseCategory.entity';
-import { ReleaseOrigin } from './releaseOrigin.entity';
+import { ReleaseCategory } from './release-category.entity';
+import { ReleaseOrigin } from './release-origin.entity';
 
 @Entity()
-export class Release implements ReleaseInterface {
+export class Release extends AbstractEntity implements ReleaseInterface {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()

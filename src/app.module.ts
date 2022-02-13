@@ -1,14 +1,16 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import typeorm from './configs/typeorm';
-import { ReleaseModule } from './modules/release/release.module';
+import ReleaseHTTPModule from './modules/release/release-http.module';
 import UserHTTPModule from './modules/user/user-http.module';
+import WalletHTTPModule from './modules/wallet/wallet-http.module';
 
 @Module({
   imports: [
-    ReleaseModule,
-    UserHTTPModule,
     TypeOrmModule.forRoot(typeorm.pgdev),
+    ReleaseHTTPModule,
+    UserHTTPModule,
+    WalletHTTPModule,
   ],
 })
 export class AppModule {}

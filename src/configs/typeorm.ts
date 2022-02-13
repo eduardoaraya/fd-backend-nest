@@ -1,7 +1,7 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { Release } from '../modules/release/models/release.entity';
-import { ReleaseCategory } from '../modules/release/models/releaseCategory.entity';
-import { ReleaseOrigin } from '../modules/release/models/releaseOrigin.entity';
+import { ReleaseCategory } from '../modules/release/models/release-category.entity';
+import { ReleaseOrigin } from '../modules/release/models/release-origin.entity';
 import { User } from '../modules/user/models/user.entity';
 import { Wallet } from '../modules/wallet/models/wallet.entity';
 
