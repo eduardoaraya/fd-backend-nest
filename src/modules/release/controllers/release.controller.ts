@@ -34,18 +34,11 @@ export class ReleaseController {
   @Post()
   async create(@Body() releaseCreateDto: ReleaseCreateDto) {
     try {
-      const entity = await this.releaseRepository.create({
-        type: 'new',
-        release_date: new Date().toDateString(),
-        description: 'Test',
-        ...releaseCreateDto,
-      });
-      console.log(entity);
+      const entity = await this.releaseRepository.create(releaseCreateDto);
       await this.releaseRepository.insert(entity);
       return {
-        data: {
-          message: 'Success',
-        },
+        data: {},
+        message: 'Success',
       };
     } catch (err) {
       return {
@@ -60,9 +53,8 @@ export class ReleaseController {
       const entity = await this.releaseRepository.findOneOrFail(params.id);
       await this.releaseRepository.update(entity, releaseUpdateDto);
       return {
-        data: {
-          message: 'Success',
-        },
+        data: {},
+        message: 'Success',
       };
     } catch (err) {
       return {
@@ -74,11 +66,11 @@ export class ReleaseController {
   @Delete(':id')
   async delete(@Param() params) {
     try {
-      await this.releaseRepository.delete({ id: params.id });
+      const entity = await this.releaseRepository.findOneOrFail(params.id);
+      await this.releaseRepository.delete(entity);
       return {
-        data: {
-          message: 'Success',
-        },
+        data: {},
+        message: 'Success',
       };
     } catch (err) {
       return {

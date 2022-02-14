@@ -32,14 +32,13 @@ export class UserController {
   }
 
   @Post()
-  async create(@Body() userCreate: UserCreateDto) {
+  async create(@Body() userCreateDto: UserCreateDto) {
     try {
-      const entity = await this.userRepository.create(userCreate);
+      const entity = await this.userRepository.create(userCreateDto);
       await this.userRepository.insert(entity);
       return {
-        data: {
-          message: 'Success',
-        },
+        data: {},
+        message: 'Success',
       };
     } catch (err) {
       return {
@@ -49,14 +48,13 @@ export class UserController {
   }
 
   @Put(':id')
-  async update(@Body() userUpdate: UserUpdateDto, @Param() params) {
+  async update(@Body() userUpdateDto: UserUpdateDto, @Param() params) {
     try {
       const user = await this.userRepository.findOneOrFail(params.id);
-      await this.userRepository.update(user, userUpdate);
+      await this.userRepository.update(user, userUpdateDto);
       return {
-        data: {
-          message: 'Success',
-        },
+        data: {},
+        message: 'Success',
       };
     } catch (err) {
       return {
@@ -70,9 +68,8 @@ export class UserController {
     try {
       await this.userRepository.delete({ id: params.id });
       return {
-        data: {
-          message: 'Success',
-        },
+        data: {},
+        message: 'Success',
       };
     } catch (err) {
       return {

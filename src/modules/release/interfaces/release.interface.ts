@@ -8,7 +8,6 @@ export interface ReleaseInterface {
   description: string;
   release_date: string;
   type: string;
-
   wallet?: WalletInterface;
   origin?: ReleaseOriginInterface;
   category?: ReleaseCategoryInterface;
