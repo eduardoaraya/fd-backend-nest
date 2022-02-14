@@ -14,7 +14,7 @@ import { ReleaseCategoryUpdateDto } from '../dto/release-category-update.dto';
 import { ReleaseCategory } from '../models/release-category.entity';
 
 @Controller('release/category')
-export class ReleaseController {
+export class ReleaseCategoryController {
   constructor(
     @InjectRepository(ReleaseCategory)
     private releaseCategoryRepository: Repository<ReleaseCategory>,
