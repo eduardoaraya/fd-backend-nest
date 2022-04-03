@@ -8,16 +8,16 @@ Improve to financial management
 
 ______
 
-## Architeture
+## Architecture
 
 [**Application**](./src/app)
-> The Application Core, contain the bootstraop application and where the server start run
+> The Application Core that contain the bootstrap application and where the server start run
 
 [**Database**](./src/db)
 > Contain database connection and schema declarations also include seeds and migrations
 
 [**libs**](./src/libs)
-> Source that provider domains to application
+> Provider Source domains to application
 
 
 ## Steps to build application
