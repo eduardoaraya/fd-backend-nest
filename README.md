@@ -1,6 +1,6 @@
 # Application to Financial Management
 Build with nodejs@16.14.5
-
+Functional Paradigm
 _______
 
 ## Idea 
@@ -17,7 +17,7 @@ ______
 > Contain database connection and schema declarations also include seeds and migrations
 
 [**libs**](./src/libs)
-> Provider Source domains to application
+> Source domains to application
 
 
 ## Steps to build application
