@@ -1,8 +1,5 @@
-import { HttpServer } from "./server";
+import { server, app, router } from "@libs/http";
+import { customerRouter } from "@libs/customer";
 
-HttpServer.server((req, res, next) => {
-  res.json({
-    message: "Hellow",
-  });
-  res.end();
-}).listen(3400, () => console.log("Server running on port: 3400"));
+server();
+router(app, [customerRouter]);
