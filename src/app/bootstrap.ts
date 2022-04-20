@@ -1,5 +1,5 @@
 import { server, app, router } from "@libs/http";
-import { customerRouter } from "@libs/customer";
+import { userRouter } from "@libs/user";
 
 server();
-router(app, [customerRouter]);
+router(app, [userRouter]);

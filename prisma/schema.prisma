@@ -20,31 +20,41 @@ model User {
 }
 
 model Wallet {
-  id        Int       @id @default(autoincrement())
-  userId    Int       
-  user      User      @relation(fields: [userId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  id          Int       @id @default(autoincrement())
+  userId      Int       
+  user        User      @relation(fields: [userId], references: [id])
+  releases    Release[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
 }
 
 model Category {
-  id            Int      @id @default(autoincrement())
-  type          Int // Input or Output
-  name          String
+  id    Int      @id @default(autoincrement())
+  name  String
 }
 
-model Input {
+enum ReleaseType {
+  INPUT
+  OUTPUT
+}
+
+enum RecursionType {
+  DAY
+  WEEK
+  MONTH
+}
+
+model Release {
   id            Int      @id @default(autoincrement())
   value         BigInt
   categoryId    Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-}
-
-model Output {
-  id        Int      @id @default(autoincrement())
-  value     BigInt
-  categoryId    Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  type          ReleaseType @default(INPUT)
+  description   String
+  isRecursion   Boolean @default(false)
+  recursionType RecursionType @default(DAY)
+  recursionDate DateTime
+  walletId      Int
+  Wallet        Wallet  @relation(fields: [walletId], references: [id])
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @default(now())
 }
