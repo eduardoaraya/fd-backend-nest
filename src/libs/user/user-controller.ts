@@ -8,7 +8,7 @@ export const serviceProvider = userService(userRepository());
 export function index(service: UserServiceInterface) {
   return async (_req: Request, res: Response) =>
     res.json({
-      data: service.repository.list(),
+      data: await service.repository.list(),
     });
 }
 
@@ -19,7 +19,6 @@ export function create(
   return async (req: Request, res: Response) => {
     try {
       const { body } = req;
-      console.log(body);
       const data = await userRequest(body);
       await service.create(data);
       res.status(201).json({
