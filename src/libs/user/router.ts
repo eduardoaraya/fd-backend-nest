@@ -1,10 +1,12 @@
 import { Router } from "express";
-import { index } from "./user-controller";
+import { serviceProvider, index, create } from "./user-controller";
+import { userRequest } from "./user-request";
 
 const router = Router();
 
-const ROOT_PATH = "/customer";
+const ROOT_PATH = "/user";
 
-router.get(`${ROOT_PATH}`, index);
+router.get(`${ROOT_PATH}`, index(serviceProvider));
+router.post(`${ROOT_PATH}/create`, create(serviceProvider, userRequest));
 
 export const userRouter = router;
