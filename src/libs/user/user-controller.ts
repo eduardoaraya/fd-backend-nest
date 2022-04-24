@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { userRepository } from "./user-repository";
-import { UserRequestInterface } from "./user-request";
 import { userService, UserServiceInterface } from "./user-service";
+import { userRequest } from "./user-request";
 
 export const serviceProvider = userService(userRepository());
 
@@ -12,10 +12,7 @@ export function index(service: UserServiceInterface) {
     });
 }
 
-export function create(
-  service: UserServiceInterface,
-  userRequest: UserRequestInterface
-) {
+export function create(service: UserServiceInterface) {
   return async (req: Request, res: Response) => {
     try {
       const { body } = req;
@@ -28,6 +25,7 @@ export function create(
     } catch (_err) {
       res.status(400).json({
         erro: "Bad request",
+        details: _err,
       });
     }
   };

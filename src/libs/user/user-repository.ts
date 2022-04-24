@@ -2,7 +2,11 @@ import { Prisma, User } from "@prisma/client";
 import dbConnection from "@db/db-client";
 import { RepositoryInterface } from "@libs/core/contracts/repository-interface";
 
-export function userRepository(): RepositoryInterface<User> {
+export interface UserRepositoryInterface extends RepositoryInterface<User> {
+  getByEmail(email: string): Promise<User | null>;
+}
+
+export function userRepository(): UserRepositoryInterface {
   async function create(data: Prisma.UserCreateArgs) {
     return dbConnection.user.create(data);
   }
@@ -10,8 +14,17 @@ export function userRepository(): RepositoryInterface<User> {
     return dbConnection.user.findMany();
   }
 
+  async function getByEmail(email: string) {
+    return dbConnection.user.findFirst({
+      where: {
+        email,
+      },
+    });
+  }
+
   return {
     create,
     list,
+    getByEmail,
   };
 }

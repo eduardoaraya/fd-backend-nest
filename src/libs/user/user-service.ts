@@ -1,19 +1,18 @@
-import { Prisma, User } from "@prisma/client";
-import { RepositoryInterface } from "@libs/core/contracts/repository-interface";
+import { Prisma } from "@prisma/client";
+import { UserRepositoryInterface } from "./user-repository";
 
 export interface UserServiceInterface {
-  repository: RepositoryInterface<User>;
+  repository: UserRepositoryInterface;
   create: (data: Prisma.UserCreateInput) => void;
 }
 
 export function userService(
-  repository: RepositoryInterface<User>
+  repository: UserRepositoryInterface
 ): UserServiceInterface {
   async function create(data: Prisma.UserCreateInput) {
     return repository.create({
       data,
     });
   }
-
   return { repository, create };
 }

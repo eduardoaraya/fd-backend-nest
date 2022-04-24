@@ -6,10 +6,6 @@ export interface UserRequestInterface {
   }): Promise<Prisma.UserCreateInput>;
 }
 
-export const userRequest: UserRequestInterface = async (data) => {
-  const { email, name } = data;
-  if (!email || !name) {
-    throw new Error("Bad Request!");
-  }
+export const userRequest: UserRequestInterface = async ({ email, name }) => {
   return { email, name };
 };
