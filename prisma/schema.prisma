@@ -21,8 +21,9 @@ model User {
 
 model Wallet {
   id          Int       @id @default(autoincrement())
-  userId      Int       
-  user        User      @relation(fields: [userId], references: [id])
+  name        String    
+  userId      Int?       
+  user        User?      @relation(fields: [userId], references: [id])
   releases    Release[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @default(now())
@@ -31,6 +32,7 @@ model Wallet {
 model Category {
   id    Int      @id @default(autoincrement())
   name  String
+  type  ReleaseType @default(INPUT)
 }
 
 enum ReleaseType {
@@ -46,15 +48,17 @@ enum RecursionType {
 
 model Release {
   id            Int      @id @default(autoincrement())
-  value         BigInt
+  value         Int
   categoryId    Int
   type          ReleaseType @default(INPUT)
   description   String
   isRecursion   Boolean @default(false)
   recursionType RecursionType @default(DAY)
   recursionDate DateTime
-  walletId      Int
-  Wallet        Wallet  @relation(fields: [walletId], references: [id])
+  walletId      Int?
+  Wallet        Wallet?  @relation(fields: [walletId], references: [id])
   createdAt     DateTime @default(now())
   updatedAt     DateTime @default(now())
 }
+
+

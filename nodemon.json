@@ -1,0 +1,5 @@
+{
+  "verbose": true,
+  "ignore": ["*.test.js"],
+  "exec": "ts-node ./src/app/index.ts"
+}
